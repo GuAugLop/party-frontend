@@ -1,0 +1,15 @@
+.button {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(90deg, #5198ff 0%, #005de1 100%);
+
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: progress;
+  opacity: 0.5;
+}
