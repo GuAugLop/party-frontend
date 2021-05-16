@@ -46,10 +46,13 @@ const Login = () => {
           setError(json.msg);
           return;
         }
+        localStorage.setItem("token", json.token);
         const { data } = json.data;
         setUser(data);
         setNewAccount(true);
       } catch (err) {
+        setUser(null);
+        setNewAccount(null);
         alert(err);
         setError("Falha ao realizar registro. Tente novamente mais tarde.");
       } finally {
@@ -58,7 +61,6 @@ const Login = () => {
     }
   };
 
-  return <NewAvatar />;
   if (newAccount) {
     return <NewAvatar />;
   }

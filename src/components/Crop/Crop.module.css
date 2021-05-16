@@ -8,8 +8,6 @@ input[type="file"] {
 
   margin: 0 auto;
   max-width: 640px;
-  width: 90vw;
-  height: calc(100vh - 70px);
 }
 
 .inputImg {
@@ -22,7 +20,7 @@ input[type="file"] {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  width: 100%;
+  width: 300px;
   max-width: 300px;
   height: 300px;
   background: #505e72;
@@ -60,6 +58,7 @@ input[type="file"] {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.9);
+  z-index: 15;
 }
 
 .footerBtn {
@@ -106,4 +105,40 @@ input[type="file"] {
   padding: 0.5rem;
   background: transparent;
   border: none;
+}
+
+@media (min-width: 550px) {
+  .preview {
+    height: 400px;
+    max-height: 400px;
+  }
+  .preview canvas {
+    border-radius: 8px;
+    max-width: 400px;
+    height: 400px;
+    max-height: 400px;
+  }
+  .inputImg {
+    width: 400px;
+    max-width: 400px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 720px) {
+  .preview {
+    height: 500px;
+    max-height: 500px;
+  }
+  .preview canvas {
+    border-radius: 8px;
+    max-width: 500px;
+    height: 500px;
+    max-height: 500px;
+  }
+  .inputImg {
+    width: 500px;
+    max-width: 500px;
+    height: 500px;
+  }
 }

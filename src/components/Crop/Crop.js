@@ -6,7 +6,7 @@ import { Button } from "..";
 import api from "../../api";
 import style from "./Crop.module.css";
 
-export default function Crop() {
+export default function Crop({ setBase64 }) {
   const [upImg, setUpImg] = useState();
   const [cropped, setCropped] = useState(false);
   const imgRef = useRef(null);
@@ -18,13 +18,13 @@ export default function Crop() {
   });
   const [completedCrop, setCompletedCrop] = useState(null);
 
-  const generateDownload = (canvas, crop) => {
+  const generateBase64 = (canvas, crop) => {
     if (!crop || !canvas) {
       return;
     }
 
     const base64 = canvas.toDataURL("image/png", 0.7).split(";base64,")[1];
-    api.changeAvatar({ name: upImg.name, base64 });
+    setBase64({ base64, name: upImg.name });
   };
 
   const onSelectFile = (e) => {
@@ -38,9 +38,10 @@ export default function Crop() {
       setUpImg(null);
       const reader = new FileReader();
 
-      reader.addEventListener("load", () =>
-        setUpImg({ result: reader.result, name: e.target.files[0].name })
-      );
+      reader.addEventListener("load", () => {
+        setBase64(null);
+        setUpImg({ result: reader.result, name: e.target.files[0].name });
+      });
       reader.readAsDataURL(e.target.files[0]);
     }
   };
@@ -129,6 +130,7 @@ export default function Crop() {
             <aside className={style.buttonContainer}>
               <button
                 onClick={() => {
+                  setBase64(null);
                   setUpImg(null);
                 }}
               >
@@ -137,6 +139,7 @@ export default function Crop() {
               <Button
                 onClick={() => {
                   setCropped(true);
+                  generateBase64(previewCanvasRef.current, completedCrop);
                 }}
               >
                 Concluir
@@ -145,23 +148,6 @@ export default function Crop() {
           </div>
         </div>
       )}
-      <br />
-      <hr />
-      <p className={style.desc}>Hora de selecionar uma foto de perfil</p>
-      <div className={style.footerBtn}>
-        <Link to="/">Pular etapa</Link>
-        <Button
-          width="150px"
-          disabled={!completedCrop?.width || !completedCrop?.height}
-          onClick={() => {
-            setCropped(true);
-            return generateDownload(previewCanvasRef.current, completedCrop);
-          }}
-          disabled={!completedCrop?.width || !completedCrop?.height}
-        >
-          Continuar
-        </Button>
-      </div>
     </div>
   );
 }
