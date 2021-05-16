@@ -48,8 +48,13 @@ const Reset = () => {
       <form className={styles.modal} onSubmit={handleSubmit}>
         <img src={logo} className={styles.logo} alt="Party" />
         {error && <p className={styles.error}>{error}</p>}
-        <Input margin="20px" label="Senha" {...password} />
-        <Input margin="50px" label="Confirme sua senha" {...confirmPass} />
+        <Input type="password" margin="20px" label="Senha" {...password} />
+        <Input
+          type="password"
+          margin="50px"
+          label="Confirme sua senha"
+          {...confirmPass}
+        />
         {loading ? (
           <Button margin="50px" disabled>
             Enviar

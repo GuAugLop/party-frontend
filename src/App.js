@@ -1,14 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./global.css";
-import { Auth } from "./pages/index";
+import { Auth, Home } from "./pages/index";
+import { UserStorage } from "./UserContext";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/auth/*" element={<Auth />} />
-        </Routes>
+        <UserStorage>
+          <Routes>
+            <Route path="/auth/*" element={<Auth />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </UserStorage>
       </BrowserRouter>
     </div>
   );

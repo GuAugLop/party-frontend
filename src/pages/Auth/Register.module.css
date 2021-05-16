@@ -38,6 +38,7 @@
 
 .error {
   color: #cc1a1a;
+  text-align: center;
 }
 
 @media (min-width: 720px) {

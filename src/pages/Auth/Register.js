@@ -5,15 +5,21 @@ import { Input, Button } from "../../components/index";
 import useForm from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 import api from "../../api";
+import { UserContext } from "../../UserContext";
+import NewAvatar from "./NewAvatar";
 
 const Login = () => {
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [newAccount, setNewAccount] = React.useState(false);
+
   const name = useForm(true);
   const lastName = useForm(true);
   const username = useForm("username");
   const email = useForm("email");
   const password = useForm("password");
+
+  const { setUser } = React.useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +33,7 @@ const Login = () => {
     ) {
       try {
         setLoading(true);
+        setError(false);
         const result = await api.register({
           email: email.value,
           password: password.value,
@@ -39,16 +46,22 @@ const Login = () => {
           setError(json.msg);
           return;
         }
-        setError(false);
-
-        console.log(result);
+        const { data } = json.data;
+        setUser(data);
+        setNewAccount(true);
       } catch (err) {
-        setError("Falha ao realizar registro.");
+        alert(err);
+        setError("Falha ao realizar registro. Tente novamente mais tarde.");
       } finally {
         setLoading(false);
       }
     }
   };
+
+  return <NewAvatar />;
+  if (newAccount) {
+    return <NewAvatar />;
+  }
 
   return (
     <div className={styles.container}>
@@ -90,7 +103,7 @@ const Login = () => {
             Criar
           </Button>
         ) : (
-          <Button margin="50px">Criar</Button>
+          <Button margin="40px">Criar</Button>
         )}
         <Link to="../login" style={{ marginTop: "50px" }}>
           Já possuo uma conta

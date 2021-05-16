@@ -10,7 +10,7 @@
     ".gitignore": true,
     "package.json": false,
     "package-lock.json": true,
-    "README.md": false,
+    "README.md": true,
     "yarn.lock": true,
     "node_modules": true,
   }

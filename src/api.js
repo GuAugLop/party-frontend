@@ -41,6 +41,17 @@ const api = {
       },
     });
   },
+
+  changeAvatar: (body) => {
+    return fetch(URL_API + "/avatar", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
+    });
+  },
 };
 
 export default api;
