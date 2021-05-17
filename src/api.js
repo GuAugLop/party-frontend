@@ -2,6 +2,14 @@ const URL_API = "http://localhost:8080/api/v1";
 const URL_FRONT = "http://localhost:3000/auth/reset";
 
 const api = {
+  tokenVerify: (token) => {
+    return fetch(URL_API + "/token-verify", {
+      method: "POST",
+      headers: {
+        authorization: token,
+      },
+    });
+  },
   login: (body) => {
     return fetch(URL_API + "/login", {
       method: "POST",

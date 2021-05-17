@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import ReactCrop from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
-import { Link } from "react-router-dom";
+
 import { Button } from "..";
-import api from "../../api";
 import style from "./Crop.module.css";
+import "react-image-crop/dist/ReactCrop.css";
+import ReactCrop from "react-image-crop";
 
 export default function Crop({ setBase64 }) {
   const [upImg, setUpImg] = useState();
@@ -46,12 +45,9 @@ export default function Crop({ setBase64 }) {
     }
   };
 
-  const onLoad = useCallback(
-    (img) => {
-      imgRef.current = img;
-    },
-    [upImg]
-  );
+  const onLoad = useCallback((img) => {
+    imgRef.current = img;
+  }, []);
 
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {

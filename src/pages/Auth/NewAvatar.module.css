@@ -27,3 +27,8 @@
 
   width: 280px;
 }
+
+.error {
+  color: #cc1a1a;
+  text-align: center;
+}

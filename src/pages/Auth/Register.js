@@ -4,13 +4,10 @@ import logo from "../../static/img/logo.svg";
 import { Input, Button } from "../../components/index";
 import useForm from "../../hooks/useForm";
 import { Link } from "react-router-dom";
-import api from "../../api";
 import { UserContext } from "../../UserContext";
 import NewAvatar from "./NewAvatar";
 
 const Login = () => {
-  const [error, setError] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
   const [newAccount, setNewAccount] = React.useState(false);
 
   const name = useForm(true);
@@ -18,46 +15,22 @@ const Login = () => {
   const username = useForm("username");
   const email = useForm("email");
   const password = useForm("password");
+  const [error, setError] = React.useState(null);
 
-  const { setUser } = React.useContext(UserContext);
+  const { userRegister, loading } = React.useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (
-      name.validate() &&
-      lastName.validate() &&
-      email.validate() &&
-      password.validate() &&
-      username.validate()
-    ) {
-      try {
-        setLoading(true);
-        setError(false);
-        const result = await api.register({
-          email: email.value,
-          password: password.value,
-          name: `${name.value} ${lastName.value}`,
-          username: username.value,
-        });
-        const json = await result.json();
-
-        if (!result.ok) {
-          setError(json.msg);
-          return;
-        }
-        localStorage.setItem("token", json.token);
-        const { data } = json.data;
-        setUser(data);
-        setNewAccount(true);
-      } catch (err) {
-        setUser(null);
-        setNewAccount(null);
-        alert(err);
-        setError("Falha ao realizar registro. Tente novamente mais tarde.");
-      } finally {
-        setLoading(false);
-      }
+    const newAccount = await userRegister(
+      email,
+      password,
+      name,
+      lastName,
+      username,
+      setError
+    );
+    if (newAccount === true) {
+      setNewAccount(true);
     }
   };
 

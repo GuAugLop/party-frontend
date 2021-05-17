@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ children, margin, width, onClick, ...props }) => {
+const Button = ({ children, margin, width, onClick, height, ...props }) => {
   const style = {
     marginTop: margin || "default",
-    width: width || "default",
+    width: width || "auto",
+    height: height || "default",
   };
 
   return (

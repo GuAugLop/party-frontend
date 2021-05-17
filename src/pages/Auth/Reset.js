@@ -4,12 +4,14 @@ import styles from "./Reset.module.css";
 import logo from "../../static/img/logo.svg";
 import useForm from "../../hooks/useForm";
 import api from "../../api";
+import { useNavigate } from "react-router";
 
 const Reset = () => {
   const password = useForm("password");
   const confirmPass = useForm("password");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
 
   const [token, setToken] = React.useState("");
 
@@ -33,8 +35,8 @@ const Reset = () => {
     try {
       setLoading(true);
       setError(null);
-      const result = await api.reset({ password: password.value, token });
-      console.log(result);
+      await api.reset({ password: password.value, token });
+      navigate("/auth/login");
     } catch (err) {
       setLoading(false);
       setError("Falha ao enviar o código.");

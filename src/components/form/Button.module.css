@@ -6,6 +6,10 @@
   color: #fff;
   background: linear-gradient(90deg, #5198ff 0%, #005de1 100%);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
 }
 
