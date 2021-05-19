@@ -3,14 +3,16 @@ import styles from "./Login.module.css";
 import logo from "../../static/img/logo.svg";
 import { Input, Button } from "../../components/index";
 import useForm from "../../hooks/useForm";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 
 const Login = () => {
   const email = useForm("email");
   const password = useForm("password");
   const [error, setError] = React.useState(null);
-  const { userLogin, loading } = React.useContext(UserContext);
+  const { userLogin, login, loading } = React.useContext(UserContext);
+
+  if (login === true) return <Navigate to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

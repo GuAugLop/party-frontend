@@ -24,7 +24,6 @@ export const UserStorage = ({ children }) => {
           } else {
             setUser(json.user);
             setLogin(true);
-            navigate("/");
           }
         } catch (err) {
           userLogout();
@@ -34,7 +33,7 @@ export const UserStorage = ({ children }) => {
       }
     }
     autoLogin();
-  }, [navigate]);
+  }, []);
 
   async function userLogin(email, password, setError) {
     try {

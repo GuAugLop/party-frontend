@@ -74,11 +74,13 @@ const Login = () => {
         />
 
         {loading ? (
-          <Button margin="50px" disabled>
+          <Button margin="50px" width="100%" disabled>
             Criar
           </Button>
         ) : (
-          <Button margin="40px">Criar</Button>
+          <Button margin="50px" width="100%">
+            Criar
+          </Button>
         )}
         <Link to="../login" style={{ marginTop: "50px" }}>
           Já possuo uma conta

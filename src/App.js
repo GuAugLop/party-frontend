@@ -11,7 +11,7 @@ function App() {
         <UserStorage>
           <Routes>
             <Route path="/auth/*" element={<Auth />} />
-            <ProtectedRoute path="/" element={<Home />} />
+            <ProtectedRoute path="/*" element={<Home />} />
           </Routes>
         </UserStorage>
       </BrowserRouter>

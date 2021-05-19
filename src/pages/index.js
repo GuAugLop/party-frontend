@@ -1,4 +1,4 @@
-import Auth from "./Auth/Auth";
-import Home from "./Home/Home";
+import Auth from "./Auth/index";
+import Home from "./Home/index";
 
 export { Auth, Home };

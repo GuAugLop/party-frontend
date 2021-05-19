@@ -59,6 +59,14 @@ input[type="file"] {
   height: 100vh;
   background: rgba(0, 0, 0, 0.9);
   z-index: 15;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crop div img {
+  max-height: 80vh;
 }
 
 .footerBtn {

@@ -1,0 +1,32 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 20px;
+  max-width: 300px;
+  min-height: calc(100vh - 101px);
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error {
+  color: #cc1a1a;
+  text-align: center;
+}
+
+@media (min-width: 550px) {
+  .container {
+    max-width: 400px;
+  }
+}
+@media (min-width: 720px) {
+  .container {
+    max-width: 500px;
+  }
+}

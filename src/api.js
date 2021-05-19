@@ -60,6 +60,37 @@ const api = {
       },
     });
   },
+
+  newPost: (body) => {
+    return fetch(URL_API + "/posts", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
+    });
+  },
+
+  getPosts: () => {
+    return fetch(URL_API + "/posts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
+    });
+  },
+
+  getPost: (id) => {
+    return fetch(URL_API + "/posts/" + id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
+      },
+    });
+  },
 };
 
 export default api;

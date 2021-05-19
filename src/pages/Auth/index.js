@@ -5,7 +5,7 @@ import Register from "./Register";
 import Forgot from "./Forgot";
 import Reset from "./Reset";
 
-const Auth = () => {
+const index = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -16,4 +16,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default index;
