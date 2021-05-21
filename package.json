@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "https://guauglop.github.io/party-frontend/",
+  "homepage": "https://partyrs.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "engines": {
