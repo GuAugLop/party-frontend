@@ -1,6 +1,6 @@
 //const URL_API_EXTERNAL = "http://177.157.126.141:8080/api/v1";
 const URL_API_DEV = "http://localhost:8080/api/v1";
-const URL_API_PROD = "http://api-party-rs.umbler.net/api/v1";
+const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
 const URL_FRONT = "http://177.157.126.141:3000/auth/reset";
 
 const api = {
