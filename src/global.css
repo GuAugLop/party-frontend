@@ -43,3 +43,13 @@ a {
 
   font-size: 18px;
 }
+
+@media (max-width: 330px) {
+  body,
+  html,
+  header,
+  head,
+  div * {
+    overflow-x: hidden;
+  }
+}

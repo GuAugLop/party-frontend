@@ -6,16 +6,5 @@ import Header from "./Header/Header";
 import Post from "./Post/Post";
 import PostModal from "./PostModal/PostModal";
 import Feed from "./Feed/Feed";
-import Comment from "./Comment/Comment";
 
-export {
-  Input,
-  Button,
-  InputError,
-  Crop,
-  Header,
-  Post,
-  Feed,
-  PostModal,
-  Comment,
-};
+export { Input, Button, InputError, Crop, Header, Post, Feed, PostModal };

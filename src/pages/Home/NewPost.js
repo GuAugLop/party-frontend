@@ -32,6 +32,7 @@ const NewPost = () => {
       });
       const json = await result.json();
       if (!result.ok) {
+        console.log(json);
         setError(json.msg);
       } else {
         setSended(true);

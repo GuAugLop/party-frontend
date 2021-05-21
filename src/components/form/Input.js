@@ -14,10 +14,17 @@ const Input = ({
   desc,
   margin,
   width,
+  className,
+  height,
   ...props
 }) => {
+  const style = {
+    marginTop: margin || "",
+    width: width || "100%",
+    height: height || "auto",
+  };
   return (
-    <div className={styles.wrapper} style={margin && { marginTop: margin }}>
+    <div className={styles.wrapper} style={style}>
       <input
         placeholder={label}
         id={name}

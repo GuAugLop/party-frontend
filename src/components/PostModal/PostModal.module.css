@@ -1,0 +1,137 @@
+.background {
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 70px);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modalContainer {
+  max-width: 600px;
+  width: 85vw;
+  height: 80vh;
+  background: #2b2b2b;
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  animation: showModal 0.2s;
+}
+@keyframes showModal {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  margin: 0.7rem;
+
+  font: 400 1.4rem Arial;
+
+  border: none;
+  background: none;
+  color: #fff;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comments {
+  height: 300px;
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+.listComments {
+  width: 100%;
+}
+
+.headerContent {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #747474;
+  overflow-y: hidden;
+}
+
+.inputContainer {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputContainer img {
+  margin-left: 10px;
+  height: 40px;
+}
+
+.avatar {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+@media (min-width: 700px) {
+  .background {
+    height: calc(100vh - 81px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .modalContainer {
+    flex-direction: row;
+    max-width: 80vw;
+  }
+  .comments {
+    height: 100%;
+    max-height: 440px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .modalContainer {
+    flex-direction: row;
+    max-width: 80vw;
+  }
+  .comments {
+    height: 100%;
+    max-height: 490px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .modalContainer {
+    flex-direction: row;
+    max-width: 80vw;
+  }
+  .comments {
+    height: 100%;
+    max-height: 540px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .modalContainer {
+    flex-direction: row;
+    max-width: 80vw;
+  }
+  .comments {
+    height: 100%;
+    max-height: 680px;
+  }
+}

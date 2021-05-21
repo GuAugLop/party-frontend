@@ -7,7 +7,16 @@ import liked from "../../static/img/liked.png";
 import styles from "./Post.module.css";
 import api from "../../api";
 
-const Post = ({ img, desc, name, userThumb, username, postID, setModal }) => {
+const Post = ({
+  img,
+  desc,
+  name,
+  userThumb,
+  username,
+  postID,
+  setModal,
+  comments,
+}) => {
   async function getPost(id) {
     const result = await api.getPost(id);
     const json = await result.json();
@@ -43,9 +52,9 @@ const Post = ({ img, desc, name, userThumb, username, postID, setModal }) => {
       <div className={styles.footerPost}>
         <div>
           <img src={liked} alt="Like" />
-          <img src={comment} alt="Like" />
+          <img src={comment} alt="comment" onClick={() => getPost(postID)} />
         </div>
-        <p>46 Curtidas</p>
+        <p>46 Curtidas | {comments.length} comentários</p>
       </div>
     </div>
   );

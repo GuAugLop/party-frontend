@@ -30,7 +30,7 @@ const ProtectedRoute = (props) => {
         </div>
       </>
     );
-  else if (login === false) return <Navigate to="/auth/login" />;
+  else if (login === false) return <Navigate to={"/auth/login"} />;
   else return null;
 };
 

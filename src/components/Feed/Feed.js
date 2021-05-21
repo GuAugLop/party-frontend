@@ -31,6 +31,7 @@ const Feed = ({ setModal }) => {
         userThumb={post.user.thumb}
         img={post.thumb}
         postID={post._id}
+        comments={post.comments}
         setModal={setModal}
       />
     ));
