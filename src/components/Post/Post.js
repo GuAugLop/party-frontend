@@ -74,7 +74,11 @@ const Post = ({
         <img src={context} className={styles.context} alt="context" />
       </div>
       {desc && (
-        <p ref={descRef} onClick={showMoreFunc} className={styles.desc}>
+        <p
+          ref={descRef}
+          onClick={showMore.show ? showMoreFunc : () => {}}
+          className={styles.desc}
+        >
           {desc}
         </p>
       )}
