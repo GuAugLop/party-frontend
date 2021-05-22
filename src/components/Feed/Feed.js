@@ -61,6 +61,7 @@ const Feed = ({ setModal }) => {
       <>
         {posts.map((post) => (
           <Post
+            id={post._id}
             key={post._id}
             desc={post.body}
             name={post.user.name}
@@ -69,6 +70,7 @@ const Feed = ({ setModal }) => {
             img={post.thumb}
             postID={post._id}
             comments={post.comments}
+            likes={post.likes}
             setModal={setModal}
           />
         ))}

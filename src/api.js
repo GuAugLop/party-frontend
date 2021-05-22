@@ -115,7 +115,12 @@ const api = {
   },
 
   postLike: (id) => {
-    return fetch(URL_API_PROD + `/posts/like/${id}`);
+    return fetch(URL_API_PROD + `/posts/like/${id}`, {
+      method: "POST",
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    });
   },
 
   getUser: (id) => {

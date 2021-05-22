@@ -2,12 +2,14 @@ import React from "react";
 import defaultAvatar from "../../static/img/defaultAvatar.png";
 import context from "../../static/img/context.png";
 import comment from "../../static/img/comment.png";
-//import like from "../../static/img/like.png";
-import liked from "../../static/img/liked.png";
+import likeIcon from "../../static/img/like.png";
+import likedIcon from "../../static/img/liked.png";
 import styles from "./Post.module.css";
 import api from "../../api";
+import { UserContext } from "../../UserContext";
 
 const Post = ({
+  id,
   img,
   desc,
   name,
@@ -16,10 +18,45 @@ const Post = ({
   postID,
   setModal,
   comments,
+  likes,
 }) => {
+  const [like, setLike] = React.useState(false);
+  const [likeCount, setLikeCount] = React.useState(0);
+  const [likesPost, setLikesPost] = React.useState([]);
+  const { user } = React.useContext(UserContext);
   const [showMore, setShowMore] = React.useState({
     show: false,
   });
+
+  const postLike = async () => {
+    try {
+      setLike(!like);
+      const result = await api.postLike(id);
+      const json = await result.json();
+      if (!result.ok) {
+        return;
+      }
+
+      if (json.post.likes.find((id) => id === user._id)) {
+        setLikeCount(json.post.likes.length);
+      } else {
+        setLikeCount(json.post.likes.length);
+      }
+    } catch (err) {
+      return;
+    }
+  };
+
+  React.useEffect(() => {
+    if (likes.find((id) => id === user._id)) {
+      setLike(true);
+      setLikeCount(likes.length);
+    } else {
+      setLike(false);
+      setLikeCount(likes.length);
+    }
+  }, []);
+
   const descRef = React.useRef();
   React.useEffect(() => {
     if (desc && desc.length > 300) {
@@ -54,6 +91,7 @@ const Post = ({
       setModal(json);
     } catch (err) {
       console.log(err);
+      return;
     }
   }
 
@@ -95,10 +133,16 @@ const Post = ({
       />
       <div className={styles.footerPost}>
         <div>
-          <img src={liked} alt="Like" />
+          <img
+            src={like ? likedIcon : likeIcon}
+            alt="Like"
+            onClick={postLike}
+          />
           <img src={comment} alt="comment" onClick={() => getPost(postID)} />
         </div>
-        <p>46 Curtidas | {comments.length} comentários</p>
+        <p>
+          {likeCount} Curtidas | {comments.length} comentários
+        </p>
       </div>
     </div>
   );
