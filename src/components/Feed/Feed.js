@@ -41,7 +41,6 @@ const Feed = ({ setModal }) => {
     if (!result.ok) {
       setError(json.msg);
     } else {
-      console.log(json);
       const newPosts = [...posts, ...json.posts];
       setPosts(newPosts);
       if (json.posts.length < limit) {

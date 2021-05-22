@@ -1,6 +1,7 @@
+//const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
 //const URL_API_DEV = "http://localhost:8080/api/v1";
-const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
-const URL_FRONT = "http://177.157.126.141:3000/auth/reset";
+const URL_API_PROD = "http://localhost:8080/api/v1";
+const URL_FRONT = "https://partyrs.herokuapp.com/auth/reset";
 
 const api = {
   tokenVerify: (token) => {
@@ -111,6 +112,10 @@ const api = {
         authorization: localStorage.getItem("token"),
       },
     });
+  },
+
+  postLike: (id) => {
+    return fetch(URL_API_PROD + `/posts/like/${id}`);
   },
 
   getUser: (id) => {
