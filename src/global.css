@@ -5,7 +5,7 @@ html,
 #root,
 .App {
   width: 100%;
-  background: var(--background-primary);
+  background: #2c3542;
   color: #fff;
   font-family: Archivo, Helvetica, sans-serif;
   text-rendering: optimizeLegibility !important;

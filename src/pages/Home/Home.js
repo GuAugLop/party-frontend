@@ -4,6 +4,7 @@ import { Feed, PostModal } from "../../components/index";
 
 const Home = () => {
   const [modal, setModal] = React.useState(null);
+
   return (
     <div className={styles.container}>
       {modal && <PostModal setModal={setModal} modal={modal} />}

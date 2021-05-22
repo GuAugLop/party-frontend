@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./PostModal.module.css";
 import sendIcon from "../../static/img/sendIcon.png";
 import { Input } from "../index";
+import defaultAvatar from "../../static/img/defaultAvatar.png";
 import Comment from "./Comment";
-import useForm from "../../hooks/useForm";
 import api from "../../api";
 
 const PostModal = ({ setModal, modal }) => {
@@ -57,7 +57,7 @@ const PostModal = ({ setModal, modal }) => {
                 x
               </button>
               <img
-                src={modal.post.user.thumb}
+                src={modal.post.user.thumb || defaultAvatar}
                 className={styles.avatar}
                 alt="avatar"
               />

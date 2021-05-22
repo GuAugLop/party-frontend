@@ -55,7 +55,22 @@
   padding: 0 10px;
   width: 100%;
   max-width: 380px;
+  overflow: hidden;
   font-weight: 400;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.showMore {
+  align-self: flex-end;
+  margin-right: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  background: linear-gradient(45deg, #00ccff 17.02%, #a661ff 83.32%),
+    linear-gradient(270deg, #7214e9 40.47%, #0009e6 97.4%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: end;
 }
 
 .footerPost {

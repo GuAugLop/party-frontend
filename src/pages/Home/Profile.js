@@ -1,10 +1,11 @@
 import React from "react";
-import { Navigate, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import api from "../../api";
 
 const Profile = () => {
   const { id } = useParams();
   const [user, setUser] = React.useState(null);
+  console.log(user);
   const navigate = useNavigate();
   React.useEffect(() => {
     const getUser = async () => {
@@ -18,7 +19,7 @@ const Profile = () => {
       setUser(json);
     };
     getUser();
-  }, [id]);
+  }, [navigate, id]);
   return <div>a</div>;
 };
 

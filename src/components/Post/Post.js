@@ -17,13 +17,44 @@ const Post = ({
   setModal,
   comments,
 }) => {
-  async function getPost(id) {
-    const result = await api.getPost(id);
-    const json = await result.json();
-    if (!result.ok) {
-      return;
+  const [showMore, setShowMore] = React.useState({
+    show: false,
+  });
+  const descRef = React.useRef();
+  React.useEffect(() => {
+    if (desc && desc.length > 300) {
+      setShowMore({
+        show: true,
+        text: "Ver mais...",
+      });
+      descRef.current.style.whiteSpace = "nowrap";
     }
-    setModal(json);
+  }, [desc]);
+
+  const showMoreFunc = () => {
+    if (descRef.current.style.whiteSpace === "nowrap") {
+      descRef.current.style.whiteSpace = "unset";
+      setShowMore({ show: true, text: "Mostrar menos" });
+    } else {
+      descRef.current.style.whiteSpace = "nowrap";
+      setShowMore({
+        show: true,
+        text: "Ver mais...",
+      });
+    }
+  };
+
+  async function getPost(id) {
+    try {
+      const result = await api.getPost(id);
+      const json = await result.json();
+      if (!result.ok) {
+        return;
+      }
+      setModal(json);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -42,7 +73,16 @@ const Post = ({
         </div>
         <img src={context} className={styles.context} alt="context" />
       </div>
-      <p className={styles.desc}>{desc}</p>
+      {desc && (
+        <p ref={descRef} onClick={showMoreFunc} className={styles.desc}>
+          {desc}
+        </p>
+      )}
+      {showMore.show && (
+        <p onClick={showMoreFunc} className={styles.showMore}>
+          {showMore.text}
+        </p>
+      )}
       <img
         className={styles.thumb}
         alt="Pub"
