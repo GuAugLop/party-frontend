@@ -84,7 +84,7 @@
   height: 70px;
 }
 
-.footerPost div img {
+.footerPost div svg {
   cursor: pointer;
   width: 26px;
   height: 24px;
@@ -112,7 +112,7 @@
     max-width: 500px;
     padding: 0;
   }
-  .footerPost div img {
+  .footerPost div svg {
     width: 30px;
     height: 28px;
     margin: 0;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "..";
-import logo from "../../static/img/logo.svg";
+import { ReactComponent as Logo } from "../../static/img/logo.svg";
 import moreIcon from "../../static/img/more.png";
 import defaultAvatar from "../../static/img/defaultAvatar.png";
 import { UserContext } from "../../UserContext";
@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link to="/">
-        <img src={logo} alt="Party" className={styles.logo} />
+        <Logo className={styles.logo} />
       </Link>
       <div className={styles.buttonContainer}>
         <Link to="/new">

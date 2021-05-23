@@ -1,9 +1,9 @@
 import React from "react";
 import defaultAvatar from "../../static/img/defaultAvatar.png";
 import context from "../../static/img/context.png";
-import comment from "../../static/img/comment.png";
-import likeIcon from "../../static/img/like.png";
-import likedIcon from "../../static/img/liked.png";
+import { ReactComponent as Comment } from "../../static/img/comment.svg";
+import { ReactComponent as LikeIcon } from "../../static/img/like.svg";
+import { ReactComponent as LikedIcon } from "../../static/img/liked.svg";
 import styles from "./Post.module.css";
 import api from "../../api";
 import { UserContext } from "../../UserContext";
@@ -22,7 +22,6 @@ const Post = ({
 }) => {
   const [like, setLike] = React.useState(false);
   const [likeCount, setLikeCount] = React.useState(0);
-  const [likesPost, setLikesPost] = React.useState([]);
   const { user } = React.useContext(UserContext);
   const [showMore, setShowMore] = React.useState({
     show: false,
@@ -55,7 +54,7 @@ const Post = ({
       setLike(false);
       setLikeCount(likes.length);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const descRef = React.useRef();
   React.useEffect(() => {
@@ -90,7 +89,7 @@ const Post = ({
       }
       setModal(json);
     } catch (err) {
-      console.log(err);
+      setModal(null);
       return;
     }
   }
@@ -133,12 +132,12 @@ const Post = ({
       />
       <div className={styles.footerPost}>
         <div>
-          <img
-            src={like ? likedIcon : likeIcon}
-            alt="Like"
-            onClick={postLike}
-          />
-          <img src={comment} alt="comment" onClick={() => getPost(postID)} />
+          {like ? (
+            <LikedIcon onClick={postLike} />
+          ) : (
+            <LikeIcon onClick={postLike} />
+          )}
+          <Comment onClick={() => getPost(postID)} />
         </div>
         <p>
           {likeCount} Curtidas | {comments.length} comentários

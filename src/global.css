@@ -18,6 +18,25 @@ html,
 
   user-select: none;
   outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+svg:focus,
+svg:active,
+svg:visited,
+img,
+img:focus,
+img:active img:visited,
+button {
+  border: none !important;
+  outline: none !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 *::-webkit-scrollbar {

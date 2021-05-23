@@ -33,7 +33,7 @@ const Feed = ({ setModal }) => {
       window.removeEventListener("wheel", infiniteScroll);
       window.removeEventListener("scroll", infiniteScroll);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getPosts = async (page) => {
     const result = await api.getPosts(page, limit);

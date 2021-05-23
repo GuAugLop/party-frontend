@@ -1,6 +1,6 @@
 //const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
 //const URL_API_DEV = "http://localhost:8080/api/v1";
-const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
+const URL_API_PROD = "http://localhost:8080/api/v1";
 const URL_FRONT = "https://partyrs.herokuapp.com/auth/reset";
 
 const api = {
