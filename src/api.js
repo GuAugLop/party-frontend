@@ -1,11 +1,9 @@
-//const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
-//const URL_API_DEV = "http://localhost:8080/api/v1";
-const URL_API_PROD = "https://api-partyrs.herokuapp.com/api/v1";
+const URL_API = process.env.REACT_APP_URL_API;
 const URL_FRONT = "https://partyrs.herokuapp.com/auth/reset";
 
 const api = {
   tokenVerify: (token) => {
-    return fetch(URL_API_PROD + "/token-verify", {
+    return fetch(URL_API + "/token-verify", {
       method: "POST",
       headers: {
         authorization: token,
@@ -13,7 +11,7 @@ const api = {
     });
   },
   login: (body) => {
-    return fetch(URL_API_PROD + "/login", {
+    return fetch(URL_API + "/login", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -23,7 +21,7 @@ const api = {
   },
 
   register: (body) => {
-    return fetch(URL_API_PROD + "/register", {
+    return fetch(URL_API + "/register", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -33,7 +31,7 @@ const api = {
   },
 
   forgot: ({ email }) => {
-    return fetch(URL_API_PROD + "/forgot", {
+    return fetch(URL_API + "/forgot", {
       method: "POST",
       body: JSON.stringify({ email, url: URL_FRONT }),
       headers: {
@@ -43,7 +41,7 @@ const api = {
   },
 
   reset: (body) => {
-    return fetch(URL_API_PROD + "/reset-pass", {
+    return fetch(URL_API + "/reset-pass", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -53,7 +51,7 @@ const api = {
   },
 
   changeAvatar: (body) => {
-    return fetch(URL_API_PROD + "/avatar", {
+    return fetch(URL_API + "/avatar", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -64,7 +62,7 @@ const api = {
   },
 
   newPost: (body) => {
-    return fetch(URL_API_PROD + "/posts", {
+    return fetch(URL_API + "/posts", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -75,7 +73,7 @@ const api = {
   },
 
   getPosts: (page, limit) => {
-    return fetch(URL_API_PROD + `/posts?page=${page}&limit=${limit}`, {
+    return fetch(URL_API + `/posts?page=${page}&limit=${limit}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +83,7 @@ const api = {
   },
 
   getPost: (id) => {
-    return fetch(URL_API_PROD + "/posts/" + id, {
+    return fetch(URL_API + "/posts/" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +93,7 @@ const api = {
   },
 
   postComment: (body, id) => {
-    return fetch(URL_API_PROD + `/posts/comments/${id}`, {
+    return fetch(URL_API + `/posts/comments/${id}`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -106,7 +104,7 @@ const api = {
   },
 
   getComment: (id) => {
-    return fetch(URL_API_PROD + `/posts/comments/${id}`, {
+    return fetch(URL_API + `/posts/comments/${id}`, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -115,7 +113,7 @@ const api = {
   },
 
   postLike: (id) => {
-    return fetch(URL_API_PROD + `/posts/like/${id}`, {
+    return fetch(URL_API + `/posts/like/${id}`, {
       method: "POST",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -124,7 +122,7 @@ const api = {
   },
 
   getUser: (id) => {
-    return fetch(URL_API_PROD + "/users/" + id, {
+    return fetch(URL_API + "/users/" + id, {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
