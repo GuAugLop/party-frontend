@@ -8,7 +8,7 @@
 
 ## Descrição
 
-Essa é o lado frontend da nossa aplicação Party, ainda está em desenvolvimento e passará por diversas atualizações.
+Essa é o lado frontend da aplicação Party, ainda está em desenvolvimento e passará por diversas atualizações.
 
 <hr>
 <p>No momento, essas são as atuais funções do frontend:</p>
