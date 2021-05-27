@@ -5,16 +5,20 @@ import moreIcon from "../../static/img/more.png";
 import defaultAvatar from "../../static/img/defaultAvatar.png";
 import { UserContext } from "../../UserContext";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [avatar, setAvatar] = React.useState(null);
   const { user } = React.useContext(UserContext);
-  React.useEffect(() => {
+  const navigate = useNavigate();
+  const setAvatarFunc = React.useCallback(() => {
     if (user) {
       setAvatar(user.thumb || defaultAvatar);
     }
   }, [user]);
+  React.useEffect(() => {
+    setAvatarFunc();
+  });
 
   return (
     <header className={styles.header}>
@@ -28,9 +32,14 @@ const Header = () => {
           </Button>
         </Link>
 
-        <div className={styles.avatarContainer}>
-          <img src={avatar} alt="avatar" className={styles.avatar} />
-        </div>
+        <Link to={`user/${user.username}`} className={styles.avatarContainer}>
+          <img
+            src={avatar}
+            alt="avatar"
+            className={styles.avatar}
+            onClick={() => navigate(`user/${user.username}`)}
+          />
+        </Link>
       </div>
     </header>
   );

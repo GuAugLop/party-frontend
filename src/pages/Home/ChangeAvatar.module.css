@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  max-width: 640px;
+  width: 90vw;
+  height: calc(100vh - 70px);
+  position: fixed;
+  background: #2c3542;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.header img {
+  width: 123px;
+  margin-left: 24px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 280px;
+}
+
+.error {
+  color: #cc1a1a;
+  text-align: center;
+}

@@ -8,6 +8,8 @@
   justify-content: space-between;
   padding: 0 22px;
   background: var(--background-primary);
+
+  z-index: 999;
 }
 
 .buttonContainer {

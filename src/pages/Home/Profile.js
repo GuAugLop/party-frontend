@@ -5,13 +5,25 @@ import defaultAvatar from "../../static/img/defaultAvatar.png";
 import styles from "./Profile.module.css";
 import api from "../../api";
 import { Feed, PostModal } from "../../components";
+import { UserContext } from "../../UserContext";
+import ChangeAvatar from "./ChangeAvatar";
 
 const Profile = () => {
   const { id } = useParams();
+  const { user } = React.useContext(UserContext);
   const [modal, setModal] = React.useState(null);
+  const [avatar, setAvatar] = React.useState(false);
   const [profile, setProfile] = React.useState(null);
+  const [isMe, setIsMe] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (profile && user._id === profile._id) {
+      setIsMe(true);
+    }
+  }, [profile, user._id]);
+
   React.useEffect(() => {
     const getUser = async () => {
       try {
@@ -30,18 +42,27 @@ const Profile = () => {
       }
     };
     getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [navigate]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (loading) return <p>Carregando...</p>;
-  if (profile)
+  if (profile) {
     return (
       <div className={styles.container}>
+        {avatar && <ChangeAvatar setAvatar={setAvatar} />}
         {modal && <PostModal setModal={setModal} modal={modal} />}
         <div className={styles.header}>
           <div className={styles.headerContent}>
             <img
               src={profile.thumb || defaultAvatar}
-              alt=""
+              alt="profile-thumb"
               className={styles.thumb}
+              onClick={
+                isMe
+                  ? () => {
+                      setAvatar(true);
+                    }
+                  : () => {}
+              }
             />
             <div className={styles.userInfo}>
               <div className={styles.userInfoHeader}>
@@ -62,7 +83,7 @@ const Profile = () => {
         </div>
       </div>
     );
-  else return null;
+  } else return null;
 };
 
 export default Profile;
