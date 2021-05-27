@@ -7,6 +7,7 @@ import { ReactComponent as LikedIcon } from "../../static/img/liked.svg";
 import styles from "./Post.module.css";
 import api from "../../api";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router";
 
 const Post = ({
   id,
@@ -23,6 +24,7 @@ const Post = ({
   const [like, setLike] = React.useState(false);
   const [likeCount, setLikeCount] = React.useState(0);
   const { user } = React.useContext(UserContext);
+  const navigate = useNavigate();
   const [showMore, setShowMore] = React.useState({
     show: false,
   });
@@ -99,11 +101,12 @@ const Post = ({
       <div className={styles.headerPost}>
         <div className={styles.profileHeader}>
           <img
+            onClick={() => navigate(`/user/${username}`)}
             src={userThumb || defaultAvatar}
             alt="avatar"
             className={styles.avatar}
           />
-          <div>
+          <div onClick={() => navigate(`/user/${username}`)}>
             <p>{name}</p>
             <small>{username}</small>
           </div>

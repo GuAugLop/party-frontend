@@ -19,6 +19,7 @@ Essa é o lado frontend da nossa aplicação Party, ainda está em desenvolvimen
   <li>Listagem de publicações</li>
   <li>Comentários nas publicações</li>
   <li>Curtida nas publicações</li>
+    <li>Visualiação de perfil</li>
 </ul>
 
 Muitas das variáveis sensíveis não estão omitidas de forma proposital, já que esse projeto não passa de algo para portifólio e seus serviços externos são serviços públicos e gratuitos

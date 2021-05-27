@@ -2,7 +2,7 @@ import React from "react";
 import { Post } from "..";
 import api from "../../api";
 
-const Feed = ({ setModal }) => {
+const Feed = ({ setModal, user }) => {
   const [error, setError] = React.useState(null);
   const [posts, setPosts] = React.useState([]);
   const limit = 6;
@@ -36,7 +36,7 @@ const Feed = ({ setModal }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getPosts = async (page) => {
-    const result = await api.getPosts(page, limit);
+    const result = await api.getPosts(page, limit, user);
     const json = await result.json();
     if (!result.ok) {
       setError(json.msg);

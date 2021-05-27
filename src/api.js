@@ -72,14 +72,17 @@ const api = {
     });
   },
 
-  getPosts: (page, limit) => {
-    return fetch(URL_API + `/posts?page=${page}&limit=${limit}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("token"),
-      },
-    });
+  getPosts: (page, limit, user) => {
+    return fetch(
+      URL_API + `/posts?page=${page}&limit=${limit}&user=${user || ""}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("token"),
+        },
+      }
+    );
   },
 
   getPost: (id) => {
