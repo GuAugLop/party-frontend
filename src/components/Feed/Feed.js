@@ -12,6 +12,7 @@ const Feed = ({ setModal, user }) => {
 
   React.useEffect(() => {
     let wait = false;
+    
     const infiniteScroll = () => {
       if (infinite) {
         const scroll = window.scrollY;
@@ -63,14 +64,7 @@ const Feed = ({ setModal, user }) => {
           <Post
             id={post._id}
             key={post._id}
-            desc={post.body}
-            name={post.user.name}
-            username={post.user.username}
-            userThumb={post.user.thumb}
-            img={post.thumb}
-            postID={post._id}
-            comments={post.comments}
-            likes={post.likes}
+            post={...post}
             setModal={setModal}
           />
         ))}
