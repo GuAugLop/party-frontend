@@ -11,15 +11,8 @@ import { useNavigate } from "react-router";
 
 const Post = ({
   id,
-  img,
-  desc,
-  name,
-  userThumb,
-  username,
-  postID,
-  setModal,
-  comments,
-  likes,
+  post,
+  setModal,  
 }) => {
   const [like, setLike] = React.useState(false);
   const [likeCount, setLikeCount] = React.useState(0);
@@ -38,23 +31,19 @@ const Post = ({
         return;
       }
 
-      if (json.post.likes.find((id) => id === user._id)) {
-        setLikeCount(json.post.likes.length);
-      } else {
-        setLikeCount(json.post.likes.length);
-      }
+      setLikeCount(json.post.likes.length); 
     } catch (err) {
       return;
     }
   };
 
   React.useEffect(() => {
-    if (likes.find((id) => id === user._id)) {
+    if (post.likes.find((id) => id === user._id)) {
       setLike(true);
-      setLikeCount(likes.length);
+      setLikeCount(post.likes.length);
     } else {
       setLike(false);
-      setLikeCount(likes.length);
+      setLikeCount(post.likes.length);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -86,9 +75,9 @@ const Post = ({
     try {
       const result = await api.getPost(id);
       const json = await result.json();
-      if (!result.ok) {
-        return;
-      }
+
+      if (!result.ok) return
+      
       setModal(json);
     } catch (err) {
       setModal(null);
@@ -101,25 +90,25 @@ const Post = ({
       <div className={styles.headerPost}>
         <div className={styles.profileHeader}>
           <img
-            onClick={() => navigate(`/user/${username}`)}
-            src={userThumb || defaultAvatar}
+            onClick={() => navigate(`/user/${post.username}`)}
+            src={post.userThumb || defaultAvatar}
             alt="avatar"
             className={styles.avatar}
           />
-          <div onClick={() => navigate(`/user/${username}`)}>
-            <p>{name}</p>
-            <small>{username}</small>
+          <div onClick={() => navigate(`/user/${post.username}`)}>
+            <p>{post.name}</p>
+            <small>{post.username}</small>
           </div>
         </div>
         <img src={context} className={styles.context} alt="context" />
       </div>
-      {desc && (
+      {post.desc && (
         <p
           ref={descRef}
           onClick={showMore.show ? showMoreFunc : () => {}}
           className={styles.desc}
         >
-          {desc}
+          {post.desc}
         </p>
       )}
       {showMore.show && (
@@ -130,8 +119,8 @@ const Post = ({
       <img
         className={styles.thumb}
         alt="Pub"
-        src={img}
-        onClick={() => getPost(postID)}
+        src={post.img}
+        onClick={() => getPost(post.postID)}
       />
       <div className={styles.footerPost}>
         <div>
@@ -140,10 +129,10 @@ const Post = ({
           ) : (
             <LikeIcon onClick={postLike} />
           )}
-          <Comment onClick={() => getPost(postID)} />
+          <Comment onClick={() => getPost(post.postID)} />
         </div>
         <p>
-          {likeCount} Curtidas | {comments.length} comentários
+          {likeCount} Curtidas | {post.comments.length} comentários
         </p>
       </div>
     </div>
